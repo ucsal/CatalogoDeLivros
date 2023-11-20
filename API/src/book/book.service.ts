@@ -112,12 +112,20 @@ export class BooksService {
         bookIdArray.includes(favorite),
       );
 
+      const separetedStrings =
+        annotations && annotations[0] === null
+          ? ['']
+          : annotations && annotations[0];
+      const separetedArray = separetedStrings
+        ? separetedStrings.split(', ')
+        : [];
+      console.log(separetedArray);
       return {
         ...new ReturnBookDto(bookData.id, bookData.volumeInfo, isFavorite),
-        annotations,
+        annotations: separetedArray,
       };
     } catch (error) {
-      console.log('Error getting book information');
+      console.log('Error getting book information ' + error);
       throw new Error('Error getting book information');
     }
   }

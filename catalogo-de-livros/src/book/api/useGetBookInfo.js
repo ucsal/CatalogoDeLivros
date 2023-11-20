@@ -21,15 +21,15 @@ const useGetBooksList = (bookId) => {
           const favoritesToSend = userFavorites.map(
             (favorite) => favorite.bookid
           );
-          const annotations = userFavorites.map(
-            (favorite) => favorite.annotations
-          );
-          console.log(annotations);
+          const annotationsForBook = userFavorites
+            .filter((favorite) => favorite.bookid === bookId)
+            .map((favorite) => favorite.annotations);
+          console.log(annotationsForBook);
           const response = await axios.post(
             `${API_HOST_ADDRESS}/books/book/${bookId}`,
             {
               favorites: favoritesToSend,
-              annotations: annotations,
+              annotations: annotationsForBook,
             },
             {
               headers: {

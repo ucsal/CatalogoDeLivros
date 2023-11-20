@@ -22,6 +22,7 @@ import {
 import CustomModal from "./Modal";
 import CommentForm from "./CommentForm";
 import { Annotations } from "../../book";
+import { getUserFavorites } from "../../database";
 
 const BookDetails = ({ bookData }) => {
   const [isFavorite, setIsFavorite] = useState(bookData.isFavorite);
@@ -84,7 +85,14 @@ const BookDetails = ({ bookData }) => {
 
   const handleSendAnnotation = async (annotationText, bookId) => {
     try {
-      await addAnnotation(annotationText, bookId);
+      const userId = await AsyncStorage.getItem("userId");
+      const userFavorites = await getUserFavorites(userId);
+      const prevAnnotations = userFavorites
+        .filter((favorite) => favorite.bookid === bookId)
+        .map((favorite) => favorite.annotations);
+      const newAnnotations = prevAnnotations + ", " + annotationText;
+      console.log(newAnnotations);
+      await addAnnotation(newAnnotations, bookId);
       setAnnotationFormVisible(!isAnnotationFormVisible);
       console.log("Comentário enviado com sucesso!");
     } catch (error) {
