@@ -74,13 +74,13 @@ export class BooksService {
     }
   }
 
-  async getUserFavoriteBooks(userid: number): Promise<ReturnBookDto[]> {
+  async getUserFavoriteBooks(favorites): Promise<ReturnBookDto[]> {
     const apiUrl = 'https://www.googleapis.com/books/v1/volumes';
     try {
-      const booksIds = await this.favoriteService.getUserFavoritesBooksIds(
-        userid,
-      );
-      const bookPromises = booksIds.map(async (element) => {
+      // const booksIds = await this.favoriteService.getUserFavoritesBooksIds(
+      //   userid,
+      // );
+      const bookPromises = favorites.map(async (element) => {
         try {
           const response = await axios.get(`${apiUrl}/${element}`);
           const bookData = response.data;

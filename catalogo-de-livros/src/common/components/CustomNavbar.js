@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 // components
 import { View, StyleSheet } from "react-native";
+// @ts-ignore
 import CustomButton from "./CustomButton";
 
 const CustomNavbar = () => {
@@ -10,9 +11,9 @@ const CustomNavbar = () => {
 
   const buttons = [
     {
-      text: "Index",
+      text: "Home",
       iconName: "home",
-      onPress: () => navigation.navigate("Index"),
+      onPress: () => navigation.navigate("HomePage"),
     },
     {
       text: "Settings",

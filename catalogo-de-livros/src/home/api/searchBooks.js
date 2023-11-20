@@ -1,14 +1,13 @@
 // flow
 import axios from "axios";
-// @ts-ignore
-import { HOST_ADDRESS } from "@env";
+import { API_HOST_ADDRESS } from "../../../env";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const searchBooks = async (searchQuery) => {
   try {
     const token = await AsyncStorage.getItem("token");
     const response = await axios.post(
-      `http://192.168.1.69:3000/books/search`,
+      `${API_HOST_ADDRESS}/books/search`,
       {
         query: searchQuery,
       },

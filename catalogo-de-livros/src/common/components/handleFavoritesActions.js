@@ -1,52 +1,39 @@
 // flow
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// @ts-ignore
-import { HOST_ADDRESS } from "@env";
+import { API_HOST_ADDRESS } from "../../../env";
 // components
 import { TouchableOpacity, StyleSheet } from "react-native";
 //assets
 import { Theme } from "../../../assets/index";
 import Icon from "react-native-vector-icons/FontAwesome";
+// database
+import {
+  addBookToFavorites,
+  removeBookFromFavorites,
+  addAnnotationToBook,
+} from "../../database";
 
 export const addBookToFavorite = async (item, setIsFavorite) => {
   try {
-    const token = await AsyncStorage.getItem("token");
-    const response = await axios.post(
-      `http://192.168.1.69:3000/books/addBook/${item.id}/ToFavorites`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (response.status === 201) {
-      setIsFavorite(true);
-      console.warn(response.data.message);
-    }
+    const userId = await AsyncStorage.getItem("userId");
+    const result = await addBookToFavorites(userId.toString(), item.id);
+    console.log(result);
+    setIsFavorite(true);
+    console.warn("Livro adicionado aos favoritos com sucesso.");
   } catch (error) {
-    console.log(error);
+    console.error("Erro ao adicionar livro aos favoritos:", error);
   }
 };
 
 export const removeFromFavorites = async (item, setIsFavorite) => {
   try {
-    const token = await AsyncStorage.getItem("token");
-    const response = await axios.delete(
-      `http://192.168.1.69:3000/books/removeBook/${item.id}/FromFavorites`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (response.status === 204) {
-      setIsFavorite(false);
-      console.warn("Book Successfully Removed From Your Favorites");
-    }
+    const userId = await AsyncStorage.getItem("userId");
+    await removeBookFromFavorites(userId.toString(), item.id);
+    setIsFavorite(false);
+    console.warn("Livro removido dos favoritos com sucesso.");
   } catch (error) {
-    console.log(error);
+    console.error("Erro ao remover livro dos favoritos:", error);
   }
 };
 
@@ -74,24 +61,10 @@ export const FavoriteButton = ({
 
 export const addAnnotation = async (annotation, bookId) => {
   try {
-    const token = await AsyncStorage.getItem("token");
-    const response = await axios.post(
-      `http://192.168.1.69:3000/favorites/addAnnotationToBook`,
-      {
-        annotation: annotation,
-        bookId: bookId,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (response.status === 204) {
-      console.warn("Annotation Successfully Add To Book");
-    }
+    await addAnnotationToBook(annotation, bookId);
+    console.warn("Anotação adicionada ao livro com sucesso.");
   } catch (error) {
-    console.log(error);
+    console.error("Erro ao adicionar anotação ao livro:", error);
   }
 };
 

@@ -61,10 +61,12 @@ export class BooksController {
 
   @Post('/getUserFavoriteBooks')
   @UseGuards(AuthMiddleware)
-  async getUserFavoritesTest(@Req() req: Request): Promise<any> {
+  async getUserFavoritesTest(
+    @Req() req: Request,
+    @Body('favorites') favorites: any[],
+  ): Promise<any> {
     try {
-      const userId = req['user'].id;
-      return await this.booksService.getUserFavoriteBooks(userId);
+      return await this.booksService.getUserFavoriteBooks(favorites);
     } catch (error) {
       console.log(error);
       throw new UnauthorizedException(

@@ -21,6 +21,8 @@ import React from "react";
 import useGetBooksList from "../api/useGetBooksList";
 import searchBooks from "../api/searchBooks";
 
+import { consultarUsuarios, consultarFavoritos } from "../../database.js";
+
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedBooks, setSearchedBooks] = useState([]);

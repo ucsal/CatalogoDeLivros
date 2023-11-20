@@ -6,6 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { SignupPage, SignInPage } from "./user";
 import { HomePage } from "./home";
 import { Settings } from "./settings";
+import { BookScreen } from "./book";
+import { FavoriteBooksPage } from "./favorites";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +34,16 @@ export function MainContainer() {
           <Stack.Screen
             name="Settings"
             component={Settings}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="BookScreen"
+            component={BookScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={FavoriteBooksPage}
             options={{ headerShown: false }}
           />
         </>

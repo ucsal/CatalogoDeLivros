@@ -15,9 +15,12 @@ import logo from "../images/Study.png";
 // flow
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { API_HOST_ADDRESS } from "@env";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { API_HOST_ADDRESS } from "../../../env";
+
+import { getUserByUsernameAndPassword } from "../../database";
 
 export default function SignInPage() {
   const [username, setUsername] = useState("");
@@ -27,19 +30,17 @@ export default function SignInPage() {
   const navigation = useNavigation();
 
   const onSignInPressed = async () => {
-    console.log(API_HOST_ADDRESS);
     try {
-      const response = await axios.post(
-        `http://192.168.1.69:3000/auth/signIn`,
-        {
-          username,
-          password,
-        }
-      );
+      const userId = await getUserByUsernameAndPassword(username, password);
+      const response = await axios.post(`${API_HOST_ADDRESS}/auth/signIn`, {
+        username,
+        password,
+      });
 
       if (response.status === 200) {
         const token = response.data.token;
         await AsyncStorage.setItem("token", JSON.stringify(token.token));
+        await AsyncStorage.setItem("userId", userId.toString());
       }
       navigation.navigate("HomePage");
     } catch (error) {
