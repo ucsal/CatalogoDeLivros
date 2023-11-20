@@ -61,7 +61,8 @@ export const FavoriteButton = ({
 
 export const addAnnotation = async (annotation, bookId) => {
   try {
-    await addAnnotationToBook(annotation, bookId);
+    const userId = await AsyncStorage.getItem("userId");
+    await addAnnotationToBook(annotation, userId, bookId);
     console.warn("Anotação adicionada ao livro com sucesso.");
   } catch (error) {
     console.error("Erro ao adicionar anotação ao livro:", error);

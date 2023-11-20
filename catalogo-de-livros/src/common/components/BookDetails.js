@@ -66,37 +66,13 @@ const BookDetails = ({ bookData }) => {
 
   const handleOpenAnnotationForm = async (bookId) => {
     try {
-      const token = await AsyncStorage.getItem("token");
-
-      // Check if the book is in AsyncStorage
-      const isBookFavorite = await AsyncStorage.getItem(`book_${bookId}`);
-
-      if (isBookFavorite) {
+      if (isFavorite) {
         setAnnotationFormVisible(true);
       } else {
         showWarningModal(
           "Você precisa ter esse livro nos seus favoritos para adicionar alguma anotação"
         );
       }
-      // const token = await AsyncStorage.getItem("token");
-      // const response = await axios.post(
-      //   `${NEW_HOST_ADDRESS}/favorites/isBookFavorite`,
-      //   {
-      //     bookId: bookId,
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //   }
-      // );
-      // if (response.data === true) {
-      //   setAnnotationFormVisible(true);
-      // } else {
-      //   showWarningModal(
-      //     "Você precisa ter esse livro nos seus favoritos para adicionar alguma anotação"
-      //   );
-      // }
     } catch (error) {
       console.log(error);
     }
@@ -181,7 +157,7 @@ const BookDetails = ({ bookData }) => {
           }
         />
       </View>
-      <Annotations annotationsArray={bookData.bookAnnotations} />
+      <Annotations annotationsArray={bookData.annotations} />
     </SafeAreaView>
   );
 };

@@ -100,7 +100,7 @@ export class BooksService {
     }
   }
 
-  async gotToBookPage(favorites, bookId: string): Promise<any> {
+  async gotToBookPage(favorites, annotations, bookId: string): Promise<any> {
     const apiKey = process.env.API_KEY;
     const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}?key=${apiKey}`;
 
@@ -114,6 +114,7 @@ export class BooksService {
 
       return {
         ...new ReturnBookDto(bookData.id, bookData.volumeInfo, isFavorite),
+        annotations,
       };
     } catch (error) {
       console.log('Error getting book information');

@@ -76,8 +76,8 @@ const addAnnotationToBook = (annotation, userId, bookId) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "INSERT OR REPLACE INTO favorites (userid, bookid, annotations) VALUES (?, ?, ?);",
-        [userId, bookId, annotation],
+        "UPDATE favorites SET annotations = ? WHERE userid = ? AND bookid = ?;",
+        [annotation, userId, bookId],
         (_, result) => {
           resolve(result);
         },

@@ -1,15 +1,11 @@
-// flow
 import React from "react";
-// components
 import { Text, View, StyleSheet } from "react-native";
 
 const Annotations = ({ annotationsArray }) => {
   if (annotationsArray && annotationsArray.length > 0) {
-    const annotations = annotationsArray[0].annotations;
-
     return (
       <View style={styles.annotationsContainer}>
-        {annotations.map((annotation, index) => (
+        {annotationsArray.map((annotation, index) => (
           <Text style={styles.annotation} key={index}>
             {annotation}
           </Text>

@@ -122,10 +122,15 @@ export class BooksController {
   async goToBookScreen(
     @Req() req: Request,
     @Body('favorites') favorites: any[],
+    @Body('annotations') annotations: any[],
     @Param('bookId') bookId: string,
   ): Promise<any> {
     try {
-      return await this.booksService.gotToBookPage(favorites, bookId);
+      return await this.booksService.gotToBookPage(
+        favorites,
+        annotations,
+        bookId,
+      );
     } catch (error) {
       console.log('Error getting information to book data');
       throw new UnauthorizedException(
