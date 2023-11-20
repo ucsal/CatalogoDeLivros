@@ -43,7 +43,7 @@ export default function SignupPage() {
   };
 
   const onSignInPressed = () => {
-    console.warn("Signin");
+    navigation.navigate("SignIn");
   };
 
   const onTermsOfUserPressed = () => {
