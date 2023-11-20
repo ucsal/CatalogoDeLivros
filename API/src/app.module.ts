@@ -62,7 +62,7 @@ export class AppModule implements NestModule {
       },
       {
         path: 'books/book/:bookId',
-        method: RequestMethod.GET,
+        method: RequestMethod.POST,
       },
       {
         path: 'favorites/addAnnotationToBook',

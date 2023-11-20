@@ -117,15 +117,15 @@ export class BooksController {
     }
   }
 
-  @Get('/book/:bookId')
+  @Post('/book/:bookId')
   @UseGuards(AuthMiddleware)
   async goToBookScreen(
     @Req() req: Request,
+    @Body('favorites') favorites: any[],
     @Param('bookId') bookId: string,
   ): Promise<any> {
-    const userId = req['user'].id;
     try {
-      return await this.booksService.gotToBookPage(userId, bookId);
+      return await this.booksService.gotToBookPage(favorites, bookId);
     } catch (error) {
       console.log('Error getting information to book data');
       throw new UnauthorizedException(

@@ -100,27 +100,24 @@ export class BooksService {
     }
   }
 
-  async gotToBookPage(userId: number, bookId: string): Promise<any> {
+  async gotToBookPage(favorites, bookId: string): Promise<any> {
     const apiKey = process.env.API_KEY;
     const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}?key=${apiKey}`;
+
     try {
       const response = await axios.get(apiUrl);
       const bookData = response.data;
-      const isFavorite = await this.favoriteService.isBookFavorite(
-        userId,
-        bookData.id,
+      const bookIdArray = [bookId];
+      const isFavorite = favorites.some((favorite) =>
+        bookIdArray.includes(favorite),
       );
-      const bookAnnotations = await this.favoriteService.getUserAnnotations(
-        userId,
-        bookId,
-      );
+
       return {
         ...new ReturnBookDto(bookData.id, bookData.volumeInfo, isFavorite),
-        bookAnnotations,
       };
     } catch (error) {
       console.log('Error getting book information');
-      throw new Error('Erro getting book information');
+      throw new Error('Error getting book information');
     }
   }
 }
