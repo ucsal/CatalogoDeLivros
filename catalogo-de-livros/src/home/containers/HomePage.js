@@ -21,8 +21,6 @@ import React from "react";
 import useGetBooksList from "../api/useGetBooksList";
 import searchBooks from "../api/searchBooks";
 
-import { consultarUsuarios, consultarFavoritos } from "../../database.js";
-
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedBooks, setSearchedBooks] = useState([]);
@@ -48,14 +46,14 @@ export default function HomePage() {
     <>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.header_container}>
-          <Text style={styles.header_text1}>Welcome!</Text>
+          <Text style={styles.header_text1}>Bem Vindo!</Text>
           <Text style={styles.header_text2}>
-            What do you want to read today?
+            O que você gostaria de ler hoje?
           </Text>
         </View>
         <View style={styles.searchBarContainer}>
           <TextInput
-            placeholder="Search"
+            placeholder="Busca"
             clearButtonMode="always"
             style={styles.searchBar}
             autoCapitalize="none"

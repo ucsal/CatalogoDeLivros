@@ -25,8 +25,8 @@ export default function Settings() {
     <>
       <SafeAreaView style={styles.safeArea}>
         <View>
-          <Text style={styles.settings_text}>Settings</Text>
-          <CustomButton onPress={handleLogout} text="Logout" type="PRIMARY" />
+          <Text style={styles.settings_text}>Configurações</Text>
+          <CustomButton onPress={handleLogout} text="Deslogar" type="PRIMARY" />
         </View>
       </SafeAreaView>
       <CustomNavbar />

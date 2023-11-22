@@ -57,9 +57,9 @@ export default function SignupPage() {
   return (
     <ScrollView>
       <View style={styles.root}>
-        <Text style={styles.title}>Create an account</Text>
+        <Text style={styles.title}>Crie sua Conta</Text>
         <CustomInput
-          placeholder="Username"
+          placeholder="Nome de Usuário"
           value={username}
           setValue={setUsername}
           secureTextEntry={false}
@@ -73,14 +73,14 @@ export default function SignupPage() {
         />
 
         <CustomInput
-          placeholder="Password"
+          placeholder="Senha"
           value={password}
           setValue={setPassword}
           secureTextEntry={true}
         />
 
         <CustomInput
-          placeholder="Repeat Password"
+          placeholder="Repita a Senha"
           value={passwordRepeat}
           setValue={setPasswordRepeat}
           secureTextEntry={true}
@@ -93,18 +93,18 @@ export default function SignupPage() {
         />
 
         <Text style={styles.text}>
-          By registering, you confirm that you accept our{" "}
+          Ao se registrar, você confirma que aceita nossos{" "}
           <Text style={styles.link} onPress={onTermsOfUserPressed}>
-            Terms of Use
+            Termos de uso
           </Text>{" "}
-          and{" "}
+          e{" "}
           <Text style={styles.link} onPress={onPrivacyPolicyPressed}>
-            Privacy Policy
+            política de Privacidade
           </Text>
         </Text>
         <CustomButton
           onPress={onSignInPressed}
-          text="Have an account? Sign In"
+          text="Conta já existente"
           type="TERTIARY"
         />
       </View>

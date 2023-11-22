@@ -11,17 +11,17 @@ const CustomNavbar = () => {
 
   const buttons = [
     {
-      text: "Home",
+      text: "Inicio",
       iconName: "home",
       onPress: () => navigation.navigate("HomePage"),
     },
     {
-      text: "Settings",
+      text: "Configurações",
       iconName: "cog",
       onPress: () => navigation.navigate("Settings"),
     },
     {
-      text: "Favorites",
+      text: "Favoritos",
       iconName: "user",
       onPress: () => navigation.navigate("Favorites"),
     },
