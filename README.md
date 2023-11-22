@@ -14,6 +14,44 @@
 
 O projeto Catálogo de Livros consiste em uma aplicação mobile construida com react native e nestJs. A aplicação tem como objetivo oferecer um ambiente onde usuários possam vizualizar uma diversa seleção de livros, desde fantasias até estudos científicos e muito mais, além de marcar esses livros como favoritos e adicionarem anotações que achem úteis. O aplicativo abre uma porta para uma busca simples e eficientes de quaisquer livros que o usuário tenha em mente e que deseje obter mais informações sobre, ou simplesmente marca-lo como uma futura leitura.
 
+# Executando
+
+## Clone o repositorio em sua máquina.
+
+## Instale as CLI
+* Em seu terminal, execute ``` npm install -g @nestjs/cli ``` e ``` npx expo -h ``` para instalar as CLI do nestJs e Expo.
+
+## Instale as dependências
+* Abra um terminal na pasta da API e execute ```npm install```.
+* Preencha as variáveis de ambiente para o .env da API.
+* Abra um terminal na pasta do frontend e execute ```npm install```.
+
+## Execute no Android
+Instale o Android Studio
+Siga o guia de instalação do Android Studio para instalar o Android Studio. No assistente de instalação do Android Studio, certifique-se de que as caixas ao lado de todos os itens a seguir estejam marcadas:
+
+SDK Android
+Plataforma Android SDK
+Dispositivo virtual Android
+Instale o SDK
+O Android Studio instala o Android SDK mais recente por padrão, mas se você esqueceu de marcar a caixa para instalar o SDK, você pode simplesmente usar o gerenciador do SDK dentro do Android Studio
+
+Configure a variável de ambiente ANDROID_HOME
+Adicione as seguintes linhas ao seu arquivo de configuração $HOME/.bashrc ou $HOME/.zshrc:
+
+exportar ANDROID_HOME=$HOME/Android/Sdk
+exportar PATH=$PATH:$ANDROID_HOME/emulador
+exportar PATH=$PATH:$ANDROID_HOME/ferramentas
+exportar PATH=$PATH:$ANDROID_HOME/ferramentas/bin
+exportar PATH=$PATH:$ANDROID_HOME/ferramentas de plataforma
+Digite source $HOME/.bashrc para bash ou source $HOME/.zshrc para zsh e digite echo $ANDROID_HOME, se a saída for algo assim: /home/<your_username>/Android/Sdk, funcionou.
+
+## Inicie os projetos
+* Na API execute ```npm run start:dev``` para rodar a API.
+* Na Frontend  ```npm start``` para rodar o frontend. 
+  
+  
+
 # Tecnologias
 ## Linguagens
 <div style="display: inline_block">
@@ -375,3 +413,34 @@ O projeto Catálogo de Livros consiste em uma aplicação mobile construida com 
 ## Favoritos
 * O arquivo **useGetUserFavorites** é responsavel por recuperar os dados dos livros favoritos do usuário, para isso ele utiliza os id's dos livros guardados no banco de dados local e as utiliza para pegar os dados dos livros atravês da API.
 * O arquivo **FavoriteBooksPage** é o componente principal, que passa os dados obtidos para o componente geral **BookItem**
+
+## Livro
+* O arquivo **useGetBookInfo** é responsavel por recuperar o dado do livro específico que a página é destinada a carregar, ele envia o id do livro e também suas anotações, ambas as coisas salvas no SQLlite, para o backend, para que a API monte uma resposta JSON coms os dados completos e os devolva para a renderização no componente.
+* O arquvio **Annotations** é o componente responsavel por renderizar as anotações do livro.
+* O arquivo **BookScreen** é o container principal, que invoca o componente BookDetails, um componente geral responsavel por boa parte da lógica para a página de um livro.
+
+## Componentes Gerais
+* O arquivo **BookDetails** é um componente com as seguintes responsibilidades:
+    *  Renderizar os dados dos livros atravês dos dados recebidos do contaiener.
+    *  Fazer chamadas para a adição ou remoção do livro dos favoritos.
+    *  Fazer a chamada para a adição de uma anotação nova ao livro.
+*  O arquivo **CommentForm** é responsavel por renderizar o componente do formulário para o envio de uma nova anotação.
+*  O arquivo **CustomButton** é responsavel por prover um componente editavel para butões personalizados atravês de suas propriedades.
+*  O arquivo **CustomInput** é responsavel por prover um componente editavel para inputs personalizados atravês de suas propriedades.
+*  O arquivo **CustomNavbar** é responsavel por prover um componente editavel para uma navbar personalizada.
+*  O arquivo **handleFavoritesActions** é reponsavel tanto por executar funções quanto renderizar componentes:
+    * As funções para adicionar e remover dos favoritos funcionam de maneira semelhante, simplesmente fazendo a chamada ao banco de dados para a adição ou remoção de uma anotação.
+    * O componente favorite button é responsavel por renderizar o componente do botão para adicionar ou remover um livro dos favoritos e mudar seu estilo conforme suas propriedades ditarem.
+    * A função para adicionar uma nova anotação, assim como as anteriores, também faz uma chamada ao banco para realizar a adição.
+* O arquivo **CustomModal** é responsavel por prover um popup personalizado.
+
+# Contruibuição
+* Diego Andrade Deiró
+* Henrique Moura Viana
+* Denilson Xavier Oliveira
+* Gabriel da Silva Azevedo
+* Vitor Gabriel Fontes Santos
+* Henrique Araujo dos Reis
+* Albert Álef Silva Praxedes
+
+
