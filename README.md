@@ -25,6 +25,7 @@ O projeto Catálogo de Livros consiste em uma aplicação mobile construida com 
 * Abra um terminal na pasta da API e execute ```npm install```.
 * Preencha as variáveis de ambiente para o .env da API.
 * Abra um terminal na pasta do frontend e execute ```npm install```.
+* Preencha as variáveis de ambiente para o env.js do frontend.
 
 ## Execute no Android
 Instale o Android Studio
