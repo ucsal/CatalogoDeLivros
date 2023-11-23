@@ -2,10 +2,14 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 const Annotations = ({ annotationsArray }) => {
-  if (annotationsArray && annotationsArray.length > 0) {
+  const filteredAnnotations = annotationsArray.filter(
+    (annotation) => annotation !== ""
+  );
+
+  if (filteredAnnotations.length > 0) {
     return (
       <View style={styles.annotationsContainer}>
-        {annotationsArray.map((annotation, index) => (
+        {filteredAnnotations.map((annotation, index) => (
           <Text style={styles.annotation} key={index}>
             {annotation}
           </Text>

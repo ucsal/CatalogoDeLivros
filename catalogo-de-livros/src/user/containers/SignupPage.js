@@ -37,6 +37,7 @@ export default function SignupPage() {
     try {
       await insertUser(username, email, password);
       console.log("Usuário registrado com sucesso!");
+      navigation.navigate("SignIn");
     } catch (error) {
       console.error("Erro ao registrar usuário:", error);
     }
